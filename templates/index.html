@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Bharat Career Agent</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- ======================================
+         HERO
+    ======================================= -->
+
+    <header class="hero">
+
+        <h1>
+            Your Career.
+            <span>Your Roadmap.</span>
+        </h1>
+
+        <p>
+            An AI-powered career assistant for Indian students.
+            Discover career paths, analyze your resume, identify
+            skill gaps and build personalized action plans.
+        </p>
+
+    </header>
+
+
+    <!-- ======================================
+         FEATURES
+    ======================================= -->
+
+    <section class="features">
+
+        <div class="feature-card">
+
+            <h3>🎯 Career Guidance</h3>
+
+            <p>
+                Discover suitable career paths and get answers
+                to your career questions.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <h3>📄 Resume Analyzer</h3>
+
+            <p>
+                Upload your resume and receive AI-powered
+                feedback and recommendations.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <h3>🚀 Career Roadmap</h3>
+
+            <p>
+                Build a personalized learning roadmap based
+                on your education and career goal.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <h3>🤖 Action Agent</h3>
+
+            <p>
+                Identify skill gaps and automatically create
+                a practical career action plan.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         CAREER CHAT
+    ======================================= -->
+
+    <section class="agent-card">
+
+        <div class="card-heading">
+
+            <h2>🤖 Ask Bharat Career Agent</h2>
+
+            <p>
+                Ask questions about careers, skills,
+                projects and internships.
+            </p>
+
+        </div>
+
+
+        <div
+            id="response"
+            class="response-area"
+        >
+
+            <p class="welcome">
+                👋 Namaste! Tell me your career goal or
+                ask me a career-related question.
+            </p>
+
+        </div>
+
+
+        <div class="input-area">
+
+            <input
+                type="text"
+                id="message"
+                placeholder="Example: How can I become an AI Engineer?"
+            >
+
+            <button onclick="askAI()">
+                Ask AI →
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         QUICK QUESTIONS
+    ======================================= -->
+
+    <section class="quick-section">
+
+        <p>
+            Try asking:
+        </p>
+
+
+        <div class="quick-buttons">
+
+            <button
+                onclick="quickAsk('Give me an AI Engineer roadmap')"
+            >
+                AI Engineer Roadmap
+            </button>
+
+
+            <button
+                onclick="quickAsk('What skills do I need for internships?')"
+            >
+                Internship Skills
+            </button>
+
+
+            <button
+                onclick="quickAsk('Suggest AI and Data Science project ideas')"
+            >
+                Project Ideas
+            </button>
+
+
+            <button
+                onclick="quickAsk('How can I improve my resume?')"
+            >
+                Resume Help
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         RESUME ANALYZER
+    ======================================= -->
+
+    <section class="resume-card">
+
+        <div class="card-heading">
+
+            <h2>📄 AI Resume Analyzer</h2>
+
+            <p>
+                Upload your PDF resume to receive personalized
+                career and skill recommendations.
+            </p>
+
+        </div>
+
+
+        <div class="upload-area">
+
+            <div class="upload-icon">
+                📑
+            </div>
+
+
+            <h3>
+                Upload your resume
+            </h3>
+
+
+            <p>
+                PDF files only • Maximum 5 MB
+            </p>
+
+
+            <input
+                type="file"
+                id="resumeFile"
+                accept=".pdf"
+            >
+
+
+            <button
+                class="analyze-button"
+                onclick="analyzeResume()"
+            >
+                Analyze Resume ✨
+            </button>
+
+        </div>
+
+
+        <div
+            id="resumeResult"
+            class="resume-result"
+            style="display:none;"
+        >
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         PERSONALIZED ROADMAP
+    ======================================= -->
+
+    <section class="roadmap-section">
+
+        <div class="card-heading">
+
+            <h2>
+                🚀 Personalized Career Roadmap
+            </h2>
+
+            <p>
+                Tell us about yourself and let AI create
+                a personalized learning and career plan.
+            </p>
+
+        </div>
+
+
+        <div class="roadmap-form">
+
+
+            <div class="form-group">
+
+                <label>
+                    Education
+                </label>
+
+                <input
+                    type="text"
+                    id="education"
+                    placeholder="Example: B.Tech"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Department
+                </label>
+
+                <input
+                    type="text"
+                    id="department"
+                    placeholder="Example: AI & Data Science"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Year of Study
+                </label>
+
+                <input
+                    type="text"
+                    id="year"
+                    placeholder="Example: 2nd Year"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Current Skills
+                </label>
+
+                <input
+                    type="text"
+                    id="skills"
+                    placeholder="Example: Python, C, HTML"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Interests
+                </label>
+
+                <input
+                    type="text"
+                    id="interests"
+                    placeholder="Example: AI, Data Science"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Career Goal
+                </label>
+
+                <input
+                    type="text"
+                    id="goal"
+                    placeholder="Example: AI Engineer"
+                >
+
+            </div>
+
+
+            <button
+                class="roadmap-button"
+                onclick="generateRoadmap()"
+            >
+                Generate My Roadmap 🚀
+            </button>
+
+        </div>
+
+
+        <div
+            id="roadmapResult"
+            class="roadmap-result"
+            style="display:none;"
+        >
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         CAREER ACTION AGENT
+    ======================================= -->
+
+    <section class="action-agent-section">
+
+        <div class="card-heading">
+
+            <h2>
+                🤖 Career Action Agent
+            </h2>
+
+            <p>
+                Let the AI agent analyze your skill gap
+                and automatically create a practical
+                12-week action plan.
+            </p>
+
+        </div>
+
+
+        <div class="action-agent-form">
+
+
+            <div class="form-group">
+
+                <label>
+                    Career Goal
+                </label>
+
+                <input
+                    type="text"
+                    id="agentGoal"
+                    placeholder="Example: Machine Learning Engineer"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Current Skills
+                </label>
+
+                <input
+                    type="text"
+                    id="agentSkills"
+                    placeholder="Example: Python, HTML, Basic SQL"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Experience Level
+                </label>
+
+                <select id="agentLevel">
+
+                    <option value="">
+                        Select your level
+                    </option>
+
+                    <option value="Beginner">
+                        Beginner
+                    </option>
+
+                    <option value="Intermediate">
+                        Intermediate
+                    </option>
+
+                    <option value="Advanced">
+                        Advanced
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Study Hours Per Week
+                </label>
+
+                <input
+                    type="number"
+                    id="agentHours"
+                    min="1"
+                    max="100"
+                    placeholder="Example: 10"
+                >
+
+            </div>
+
+
+            <div class="form-group full-width">
+
+                <label>
+                    Target Duration
+                </label>
+
+                <select id="agentDuration">
+
+                    <option value="">
+                        Select target duration
+                    </option>
+
+                    <option value="3 Months">
+                        3 Months
+                    </option>
+
+                    <option value="6 Months">
+                        6 Months
+                    </option>
+
+                    <option value="12 Months">
+                        12 Months
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="action-agent-button"
+                onclick="runCareerAgent()"
+            >
+                Build My Action Plan 🤖
+            </button>
+
+        </div>
+
+
+        <!-- ==================================
+             AGENT WORKFLOW
+        =================================== -->
+
+        <div class="agent-workflow">
+
+
+            <div class="workflow-item">
+
+                <span>
+                    1
+                </span>
+
+                <p>
+                    Understand Goal
+                </p>
+
+            </div>
+
+
+            <div class="workflow-arrow">
+                →
+            </div>
+
+
+            <div class="workflow-item">
+
+                <span>
+                    2
+                </span>
+
+                <p>
+                    Analyze Gap
+                </p>
+
+            </div>
+
+
+            <div class="workflow-arrow">
+                →
+            </div>
+
+
+            <div class="workflow-item">
+
+                <span>
+                    3
+                </span>
+
+                <p>
+                    Prioritize Skills
+                </p>
+
+            </div>
+
+
+            <div class="workflow-arrow">
+                →
+            </div>
+
+
+            <div class="workflow-item">
+
+                <span>
+                    4
+                </span>
+
+                <p>
+                    Build Plan
+                </p>
+
+            </div>
+
+
+            <div class="workflow-arrow">
+                →
+            </div>
+
+
+            <div class="workflow-item">
+
+                <span>
+                    5
+                </span>
+
+                <p>
+                    Take Action
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="agentResult"
+            class="agent-result"
+            style="display:none;"
+        >
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         FOOTER
+    ======================================= -->
+
+    <footer>
+
+        🇮🇳 Bharat Career Agent
+
+        <br>
+
+        AI-powered career guidance for students
+
+    </footer>
+
+</div>
+
+
+<script>
+
+
+/* ==========================================
+   CAREER CHAT
+========================================== */
+
+async function askAI() {
+
+    const input =
+        document.getElementById("message");
+
+    const responseBox =
+        document.getElementById("response");
+
+    const message =
+        input.value.trim();
+
+
+    if (!message) {
+
+        responseBox.innerHTML =
+            "<p>Please enter a career question.</p>";
+
+        return;
+    }
+
+
+    responseBox.innerHTML =
+        "<p class='loading'>🤖 Bharat Career Agent is thinking...</p>";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/ask",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        message: message
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.response) {
+
+            responseBox.innerHTML =
+                formatText(
+                    data.response
+                );
+
+        }
+
+        else {
+
+            responseBox.innerHTML =
+                "<p>" +
+                escapeHtml(
+                    data.error ||
+                    "Something went wrong."
+                ) +
+                "</p>";
+
+        }
+
+    }
+
+    catch (error) {
+
+        responseBox.innerHTML =
+            "<p>Unable to connect to the server.</p>";
+
+    }
+
+}
+
+
+/* ==========================================
+   QUICK QUESTIONS
+========================================== */
+
+function quickAsk(question) {
+
+    document
+        .getElementById("message")
+        .value = question;
+
+    askAI();
+
+}
+
+
+/* ==========================================
+   RESUME ANALYZER
+========================================== */
+
+async function analyzeResume() {
+
+    const fileInput =
+        document.getElementById(
+            "resumeFile"
+        );
+
+    const result =
+        document.getElementById(
+            "resumeResult"
+        );
+
+
+    result.style.display =
+        "block";
+
+
+    if (!fileInput.files.length) {
+
+        result.innerHTML =
+            "<p>Please select your PDF resume first.</p>";
+
+        return;
+    }
+
+
+    const file =
+        fileInput.files[0];
+
+
+    if (
+        !file.name
+            .toLowerCase()
+            .endsWith(".pdf")
+    ) {
+
+        result.innerHTML =
+            "<p>Please upload a PDF file.</p>";
+
+        return;
+    }
+
+
+    if (
+        file.size >
+        5 * 1024 * 1024
+    ) {
+
+        result.innerHTML =
+            "<p>Your resume must be smaller than 5 MB.</p>";
+
+        return;
+    }
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "resume",
+        file
+    );
+
+
+    result.innerHTML =
+        "<p class='loading'>✨ Analyzing your resume...</p>";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/analyze-resume",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.analysis) {
+
+            result.innerHTML =
+                "<h3>📊 Resume Analysis</h3>" +
+                formatText(
+                    data.analysis
+                );
+
+        }
+
+        else {
+
+            result.innerHTML =
+                "<p>" +
+                escapeHtml(
+                    data.error ||
+                    "Unable to analyze the resume."
+                ) +
+                "</p>";
+
+        }
+
+    }
+
+    catch (error) {
+
+        result.innerHTML =
+            "<p>Unable to connect to the server.</p>";
+
+    }
+
+}
+
+
+/* ==========================================
+   PERSONALIZED ROADMAP
+========================================== */
+
+async function generateRoadmap() {
+
+    const result =
+        document.getElementById(
+            "roadmapResult"
+        );
+
+
+    const education =
+        document
+            .getElementById("education")
+            .value
+            .trim();
+
+
+    const department =
+        document
+            .getElementById("department")
+            .value
+            .trim();
+
+
+    const year =
+        document
+            .getElementById("year")
+            .value
+            .trim();
+
+
+    const skills =
+        document
+            .getElementById("skills")
+            .value
+            .trim();
+
+
+    const interests =
+        document
+            .getElementById("interests")
+            .value
+            .trim();
+
+
+    const goal =
+        document
+            .getElementById("goal")
+            .value
+            .trim();
+
+
+    result.style.display =
+        "block";
+
+
+    if (!goal) {
+
+        result.innerHTML =
+            "<p>Please enter your career goal.</p>";
+
+        return;
+    }
+
+
+    result.innerHTML =
+        "<p class='loading'>🚀 Creating your personalized roadmap...</p>";
+
+
+    const studentData = {
+
+        education: education,
+
+        department: department,
+
+        year: year,
+
+        skills: skills,
+
+        interests: interests,
+
+        goal: goal
+
+    };
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/roadmap",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(
+                            studentData
+                        )
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.roadmap) {
+
+            result.innerHTML =
+                "<h3>🎯 Your Personalized Career Roadmap</h3>" +
+                formatText(
+                    data.roadmap
+                );
+
+        }
+
+        else {
+
+            result.innerHTML =
+                "<p>" +
+                escapeHtml(
+                    data.error ||
+                    "Unable to generate your roadmap."
+                ) +
+                "</p>";
+
+        }
+
+    }
+
+    catch (error) {
+
+        result.innerHTML =
+            "<p>Unable to connect to the server.</p>";
+
+    }
+
+}
+
+
+/* ==========================================
+   CAREER ACTION AGENT
+========================================== */
+
+async function runCareerAgent() {
+
+    const result =
+        document.getElementById(
+            "agentResult"
+        );
+
+
+    const goal =
+        document
+            .getElementById("agentGoal")
+            .value
+            .trim();
+
+
+    const skills =
+        document
+            .getElementById("agentSkills")
+            .value
+            .trim();
+
+
+    const level =
+        document
+            .getElementById("agentLevel")
+            .value;
+
+
+    const hours =
+        document
+            .getElementById("agentHours")
+            .value
+            .trim();
+
+
+    const duration =
+        document
+            .getElementById("agentDuration")
+            .value;
+
+
+    result.style.display =
+        "block";
+
+
+    if (!goal) {
+
+        result.innerHTML =
+            "<p>Please enter your career goal.</p>";
+
+        return;
+    }
+
+
+    if (!level) {
+
+        result.innerHTML =
+            "<p>Please select your experience level.</p>";
+
+        return;
+    }
+
+
+    if (!hours) {
+
+        result.innerHTML =
+            "<p>Please enter your available study hours.</p>";
+
+        return;
+    }
+
+
+    if (!duration) {
+
+        result.innerHTML =
+            "<p>Please select your target duration.</p>";
+
+        return;
+    }
+
+
+    result.innerHTML = `
+        <div class="agent-running">
+
+            <h3>
+                🤖 Career Action Agent is working...
+            </h3>
+
+            <p>
+                🔎 Analyzing your career goal
+            </p>
+
+            <p>
+                🧠 Identifying skill gaps
+            </p>
+
+            <p>
+                📚 Prioritizing skills
+            </p>
+
+            <p>
+                🛠 Selecting projects
+            </p>
+
+            <p>
+                📅 Building your action plan
+            </p>
+
+        </div>
+    `;
+
+
+    const agentData = {
+
+        goal: goal,
+
+        skills: skills,
+
+        level: level,
+
+        hours: hours,
+
+        duration: duration
+
+    };
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/career-agent",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(
+                            agentData
+                        )
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.plan) {
+
+            result.innerHTML =
+                "<h3>🤖 Your Career Action Plan</h3>" +
+                formatText(
+                    data.plan
+                );
+
+        }
+
+        else {
+
+            result.innerHTML =
+                "<p>" +
+                escapeHtml(
+                    data.error ||
+                    "Unable to generate your action plan."
+                ) +
+                "</p>";
+
+        }
+
+    }
+
+    catch (error) {
+
+        result.innerHTML =
+            "<p>Unable to connect to the server.</p>";
+
+    }
+
+}
+
+
+/* ==========================================
+   IMPROVED AI RESPONSE FORMATTER
+========================================== */
+
+function formatText(text) {
+
+    if (!text) {
+        return "";
+    }
+
+
+    /*
+       Some model responses may contain
+       escaped Markdown characters.
+
+       These replacements clean them before
+       converting Markdown to HTML.
+    */
+
+    let cleaned = String(text);
+
+
+    /* Normalize line endings */
+
+    cleaned =
+        cleaned.replace(
+            /\r\n/g,
+            "\n"
+        );
+
+
+    /*
+       Remove a backslash directly before
+       a newline.
+    */
+
+    cleaned =
+        cleaned.replace(
+            /\\\s*\n/g,
+            "\n"
+        );
+
+
+    /*
+       Convert common escaped Markdown
+       characters back to normal characters.
+    */
+
+    cleaned =
+        cleaned.replace(
+            /\\([\\`*_[\]{}()#+\-.!>])/g,
+            "$1"
+        );
+
+
+    /*
+       Remove horizontal Markdown separators.
+    */
+
+    cleaned =
+        cleaned.replace(
+            /^\s*---+\s*$/gm,
+            ""
+        );
+
+
+    /*
+       Reduce excessive empty lines.
+    */
+
+    cleaned =
+        cleaned.replace(
+            /\n{3,}/g,
+            "\n\n"
+        );
+
+
+    /*
+       Escape HTML before adding our own
+       safe formatting.
+    */
+
+    cleaned =
+        escapeHtml(
+            cleaned
+        );
+
+
+    /*
+       Code blocks
+    */
+
+    cleaned =
+        cleaned.replace(
+            /```([\s\S]*?)```/g,
+            "<pre><code>$1</code></pre>"
+        );
+
+
+    /*
+       Headings
+       Process larger Markdown heading
+       markers first.
+    */
+
+    cleaned =
+        cleaned.replace(
+            /^######\s+(.+)$/gm,
+            "<h4>$1</h4>"
+        );
+
+    cleaned =
+        cleaned.replace(
+            /^#####\s+(.+)$/gm,
+            "<h4>$1</h4>"
+        );
+
+    cleaned =
+        cleaned.replace(
+            /^####\s+(.+)$/gm,
+            "<h4>$1</h4>"
+        );
+
+    cleaned =
+        cleaned.replace(
+            /^###\s+(.+)$/gm,
+            "<h3>$1</h3>"
+        );
+
+    cleaned =
+        cleaned.replace(
+            /^##\s+(.+)$/gm,
+            "<h3>$1</h3>"
+        );
+
+    cleaned =
+        cleaned.replace(
+            /^#\s+(.+)$/gm,
+            "<h2>$1</h2>"
+        );
+
+
+    /*
+       Bold text
+    */
+
+    cleaned =
+        cleaned.replace(
+            /\*\*(.+?)\*\*/g,
+            "<strong>$1</strong>"
+        );
+
+
+    /*
+       Inline code
+    */
+
+    cleaned =
+        cleaned.replace(
+            /`([^`\n]+)`/g,
+            "<code>$1</code>"
+        );
+
+
+    /*
+       Unordered list items
+    */
+
+    cleaned =
+        cleaned.replace(
+            /^\s*[-*•]\s+(.+)$/gm,
+            "<div class='ai-list-item'>• $1</div>"
+        );
+
+
+    /*
+       Numbered list items
+    */
+
+    cleaned =
+        cleaned.replace(
+            /^\s*(\d+)\.\s+(.+)$/gm,
+            "<div class='ai-number-item'><strong>$1.</strong> $2</div>"
+        );
+
+
+    /*
+       Markdown italic.
+       This runs after bold conversion.
+    */
+
+    cleaned =
+        cleaned.replace(
+            /(^|[\s(])\*([^*\n]+)\*(?=[\s.,!?):]|$)/g,
+            "$1<em>$2</em>"
+        );
+
+
+    /*
+       Convert remaining newlines
+       to HTML line breaks.
+    */
+
+    cleaned =
+        cleaned.replace(
+            /\n/g,
+            "<br>"
+        );
+
+
+    /*
+       Remove unnecessary line breaks
+       immediately around headings,
+       lists and code blocks.
+    */
+
+    cleaned =
+        cleaned.replace(
+            /(?:<br>\s*)+(<h[234]>)/g,
+            "$1"
+        );
+
+    cleaned =
+        cleaned.replace(
+            /(<\/h[234]>)(?:\s*<br>)+/g,
+            "$1"
+        );
+
+    cleaned =
+        cleaned.replace(
+            /(?:<br>\s*)+(<div class='ai-list-item'>)/g,
+            "$1"
+        );
+
+    cleaned =
+        cleaned.replace(
+            /(?:<br>\s*)+(<div class='ai-number-item'>)/g,
+            "$1"
+        );
+
+    cleaned =
+        cleaned.replace(
+            /(<\/div>)(?:\s*<br>)+(?=<div class='ai-list-item'>)/g,
+            "$1"
+        );
+
+    cleaned =
+        cleaned.replace(
+            /(<\/div>)(?:\s*<br>)+(?=<div class='ai-number-item'>)/g,
+            "$1"
+        );
+
+    cleaned =
+        cleaned.replace(
+            /(?:<br>\s*)+(<pre>)/g,
+            "$1"
+        );
+
+    cleaned =
+        cleaned.replace(
+            /(<\/pre>)(?:\s*<br>)+/g,
+            "$1"
+        );
+
+
+    return cleaned;
+
+}
+
+
+/* ==========================================
+   SECURITY - ESCAPE HTML
+========================================== */
+
+function escapeHtml(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+/* ==========================================
+   ENTER KEY FOR CHAT
+========================================== */
+
+document
+    .getElementById("message")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                event.preventDefault();
+
+                askAI();
+
+            }
+
+        }
+    );
+
+
+</script>
+
+</body>
+
+</html>
